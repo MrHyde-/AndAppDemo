@@ -4,18 +4,18 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 public class AkBaDb {
-    public SQLiteDatabase database;
-    private DbHelper dbHelper;
-    
-    public AkBaDb(Context context) {
-    	dbHelper = new DbHelper(context);
-    }
+	public SQLiteDatabase database;
+	private DbHelper dbHelper;
 
-    public void open() {
-    	database = dbHelper.getWritableDatabase();
-    }
+	public AkBaDb(Context context) {
+		dbHelper = new DbHelper(context);
+	}
 
-    public void close() {
-    	dbHelper.close();
-    }
+	public void open() {
+		database = dbHelper.getWritableDatabase();
+	}
+
+	public void close() {
+		dbHelper.close();
+	}
 }
