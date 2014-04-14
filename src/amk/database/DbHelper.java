@@ -30,7 +30,7 @@ public class DbHelper extends SQLiteOpenHelper {
 			+ " text not null, " + COLUMN_BACKLOG
 			+ " integer not null, " + COLUMN_STATUS
 			+ " integer not null, " + COLUMN_ADDED
-			+ " default current_timestamp);";
+			+ " datetime default current_timestamp);";
 
 	public DbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
