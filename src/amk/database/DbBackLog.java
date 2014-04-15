@@ -44,4 +44,9 @@ public class DbBackLog extends AkBaDb {
 		database.insert(DbHelper.TABLE_BACKLOG, null, values);
 	}
 
+	public BackLog getBacklogById(int rating) {
+		// TODO MAKE IT MEAN SOMETHING :D
+		return getAllBacklogs().get(rating - 1);
+	}
+
 }

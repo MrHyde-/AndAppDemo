@@ -1,4 +1,4 @@
-package services;
+package amk.services;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +13,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-public class NetworkData extends Service {
+public class ServNetworkData extends Service {
 
 	private ServBinder seb = new ServBinder(this);
 
@@ -35,25 +35,24 @@ public class NetworkData extends Service {
 		try {
 			url = new URL("http://users.metropolia.fi/~anttita/dev/yle.php");
 		
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(10000 /* milliseconds */);
-        conn.setConnectTimeout(15000 /* milliseconds */);
-        conn.setRequestMethod("GET");
-        conn.setDoInput(true);
-        // Starts the query
-        conn.connect();
-        
-        int response = conn.getResponseCode();        
-        Log.d("NetworkData", "The response is: " + response);
-        
-        is = conn.getInputStream();
-
-        // Convert the InputStream into a string
-        String contentAsString = readIt(is, len);
-        return contentAsString;
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        conn.setReadTimeout(10000 /* milliseconds */);
+	        conn.setConnectTimeout(15000 /* milliseconds */);
+	        conn.setRequestMethod("GET");
+	        conn.setDoInput(true);
+	        // Starts the query
+	        conn.connect();
+	        
+	        int response = conn.getResponseCode();        
+	        Log.d("NetworkData", "The response is: " + response);
+	        
+	        is = conn.getInputStream();
+	
+	        // Convert the InputStream into a string
+	        String contentAsString = readIt(is, len);
+	        return contentAsString;
         
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "Network ERROR!";
 		}

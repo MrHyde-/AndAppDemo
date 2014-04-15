@@ -1,5 +1,6 @@
 package amk.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -18,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_STATUS = "status";
 	public static final String COLUMN_ADDED = "createdDate";
 
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	public static final String CREATE_TABLEBACKLOG = "create table "
 			+ TABLE_BACKLOG + "(" + COLUMN_ID
@@ -40,6 +41,15 @@ public class DbHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_TABLEBACKLOG);
 		db.execSQL(CREATE_TABLETODOS);
+		
+		//add two sample groups
+		ContentValues values = new ContentValues();
+		values.put(DbHelper.COLUMN_NAME, "Work");
+		db.insert(DbHelper.TABLE_BACKLOG, null, values);
+		
+		ContentValues values2 = new ContentValues();
+		values2.put(DbHelper.COLUMN_NAME, "Home");
+		db.insert(DbHelper.TABLE_BACKLOG, null, values2);
 	}
 
 	@Override
