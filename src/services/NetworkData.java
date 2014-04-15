@@ -7,9 +7,6 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import android.app.Service;
 import android.content.Intent;
@@ -27,14 +24,10 @@ public class NetworkData extends Service {
 	
 	public String getNews() {
 		//try to fetch the data
-		
-        
-		SimpleDateFormat d = 
-				    new SimpleDateFormat("HH:mm:ss MM/dd/yyyy", Locale.US);
-		return (d.format(new Date()));
+		return getJSONData();
 	}
 	
-	public String getJSONData() {
+	private String getJSONData() {
 		InputStream is = null;
 		int len = 1024;
 		
@@ -66,7 +59,7 @@ public class NetworkData extends Service {
 		}
 	}
 	
-	public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+	private String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
 	    Reader reader = null;
 	    reader = new InputStreamReader(stream, "UTF-8");        
 	    char[] buffer = new char[len];
