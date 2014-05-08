@@ -1,0 +1,17 @@
+Todo:
+
+-json: add urls [done]
+
+-service: 
+ - get news
+ - list view items
+ - from listview open webview with url
+
+-notification
+ - notify if something has been todo more than 1 week
+
+ToDos
+-adding
+-edit
+-delete
+-mark_Done
