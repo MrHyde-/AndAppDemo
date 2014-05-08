@@ -38,5 +38,13 @@ public class ToDo {
 	public void setBackLog(int backLog) {
 		BackLog = backLog;
 	}
-
+	
+	@Override
+    public String toString() {
+    	String resultString = "";
+    			
+    	resultString += getName();
+   	
+    	return resultString;
+    }
 }

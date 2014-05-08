@@ -19,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_STATUS = "status";
 	public static final String COLUMN_ADDED = "createdDate";
 
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 4;
 
 	public static final String CREATE_TABLEBACKLOG = "create table "
 			+ TABLE_BACKLOG + "(" + COLUMN_ID
@@ -50,6 +50,12 @@ public class DbHelper extends SQLiteOpenHelper {
 		ContentValues values2 = new ContentValues();
 		values2.put(DbHelper.COLUMN_NAME, "Home");
 		db.insert(DbHelper.TABLE_BACKLOG, null, values2);
+		
+		ContentValues values3 = new ContentValues();
+		values3.put(DbHelper.COLUMN_NAME, "Sample");
+		values3.put(DbHelper.COLUMN_BACKLOG, 1);
+		values3.put(DbHelper.COLUMN_STATUS, 0);
+		db.insert(DbHelper.TABLE_TODO, null, values3);
 	}
 
 	@Override

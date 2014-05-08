@@ -19,6 +19,22 @@ public class DbToDo extends AkBaDb {
 		List<ToDo> ToDos = new ArrayList<ToDo>();
 		Cursor cursor = database.query(DbHelper.TABLE_TODO, allColumns, null, null, null, null, null);
 
+		handleTodoWithCursor(ToDos, cursor);
+		return ToDos;
+	}
+	
+	public List<ToDo> getToDosByBackLog(int backlog) {
+		String[] whereIds = { String.valueOf(backlog) };
+		
+		List<ToDo> ToDos = new ArrayList<ToDo>();
+		Cursor cursor = database.query(DbHelper.TABLE_TODO, allColumns, DbHelper.COLUMN_BACKLOG + " = ?", whereIds, null, null, null);
+
+		handleTodoWithCursor(ToDos, cursor);
+		
+		return ToDos;
+	}
+
+	private void handleTodoWithCursor(List<ToDo> ToDos, Cursor cursor) {
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			ToDo ToDo = cursorToToDo(cursor);
@@ -26,9 +42,8 @@ public class DbToDo extends AkBaDb {
 			cursor.moveToNext();
 		}
 		cursor.close();
-		return ToDos;
 	}
-
+	
 	private ToDo cursorToToDo(Cursor cursor) {
 		ToDo t = new ToDo();
 		t.setId(cursor.getInt(0));
