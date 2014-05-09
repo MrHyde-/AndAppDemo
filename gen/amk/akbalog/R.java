@@ -23,6 +23,8 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int sportsbackground=0x7f020001;
+        public static final int todobackground=0x7f020002;
     }
     public static final class id {
         public static final int action_settings=0x7f08000b;
@@ -66,6 +68,8 @@ public final class R {
         public static final int menuNews=0x7f05000e;
         public static final int messageAbout=0x7f05000c;
         public static final int newsTitle=0x7f050013;
+        public static final int notifyMessage=0x7f050016;
+        public static final int notifyTitle=0x7f050015;
         public static final int settingAbout=0x7f05000b;
         public static final int title_activity_news=0x7f05000f;
         public static final int title_activity_news_view=0x7f050014;

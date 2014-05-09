@@ -22,5 +22,6 @@
     <string name="dialogAddToDoTitle">Add new ToDo!</string>
     <string name="newsTitle">News from YLE Sport</string>
     <string name="title_activity_news_view">NewsViewActivity</string>
-
+	<string name="notifyTitle">There are too old ToDos!</string>
+	<string name="notifyMessage">"One called: '%1$s'! C'moon a little bit of energy!"</string>
 </resources>

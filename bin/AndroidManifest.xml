@@ -36,6 +36,8 @@
             android:name="amk.akbalog.NewsViewActivity"
             android:label="@string/title_activity_news_view" >
         </activity>
+        
+        <receiver android:name="amk.classes.TooOldToDoReceiver"></receiver>
     </application>
 
 </manifest>

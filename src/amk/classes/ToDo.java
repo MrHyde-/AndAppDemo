@@ -1,6 +1,7 @@
 package amk.classes;
 
 
+
 public class ToDo {
 	private int Id;
 	private String Name;
@@ -46,8 +47,8 @@ public class ToDo {
     	resultString += getName();
 
     	//for helping debug..
-    	//resultString += " :: activity :: " + String.valueOf(isDone());
-   	
+    	resultString += " :: time :: " + getCreatedDate();
+    	
     	return resultString;
     }
 }

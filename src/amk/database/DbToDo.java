@@ -34,6 +34,20 @@ public class DbToDo extends AkBaDb {
 		return ToDos;
 	}
 
+	public ToDo getOldestToDo() {
+		Cursor cursor = database.query(DbHelper.TABLE_TODO, allColumns, DbHelper.COLUMN_STATUS + " = 0", null, null, null, DbHelper.COLUMN_ID);
+
+		if(cursor.getCount() > 0)
+		{
+			cursor.moveToFirst();
+			ToDo ToDo = cursorToToDo(cursor);
+			cursor.close();
+			return ToDo;			
+		}
+		
+		return null;
+	}
+	
 	private void handleTodoWithCursor(List<ToDo> ToDos, Cursor cursor) {
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {

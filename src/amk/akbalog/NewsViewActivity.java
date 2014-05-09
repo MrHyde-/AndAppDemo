@@ -1,5 +1,6 @@
 package amk.akbalog;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,7 @@ public class NewsViewActivity extends Activity {
 	TextView tvTitle;
 	WebView myView;
 	
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

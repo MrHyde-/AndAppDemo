@@ -55,6 +55,8 @@ public class DbHelper extends SQLiteOpenHelper {
 		values3.put(DbHelper.COLUMN_NAME, "Sample");
 		values3.put(DbHelper.COLUMN_BACKLOG, 1);
 		values3.put(DbHelper.COLUMN_STATUS, 0);
+
+		//for test this should be set as 1 after 1 minute it is week old
 		db.insert(DbHelper.TABLE_TODO, null, values3);
 	}
 

@@ -5,9 +5,13 @@ import java.util.List;
 import amk.akbalog.R;
 import amk.database.DbToDo;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.ListFragment;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -106,5 +110,28 @@ public class ListViewFragment extends ListFragment {
 		List<ToDo> list = todos.getToDosByBackLog(currentCategory);
 		ArrayAdapter<ToDo> adapter = new ArrayAdapter<ToDo>(getActivity(), android.R.layout.simple_list_item_1, list);
 		setListAdapter(adapter);
+		
+		checkOldest();
 	}
+    
+    private void checkOldest() {
+    	Activity fragmentsActivity = getActivity();
+    	Boolean isTooOld = true;
+    	
+    	ToDo t = todos.getOldestToDo();
+    	
+    	if(t != null)
+    	{
+    		
+    		
+        	if(isTooOld) {
+        		Intent i = new Intent(fragmentsActivity, TooOldToDoReceiver.class);
+        		i.putExtra("title", t.getName());
+        		
+        		PendingIntent pi = PendingIntent.getBroadcast(fragmentsActivity, 0, i, 0);
+        		AlarmManager am = (AlarmManager) fragmentsActivity.getSystemService(Context.ALARM_SERVICE);
+        		am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 2000, pi);
+        	}
+    	}
+    }
 }
