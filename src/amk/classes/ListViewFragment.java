@@ -122,7 +122,7 @@ public class ListViewFragment extends ListFragment {
     	
     	if(t != null)
     	{
-    		
+    		isTooOld = new ActivityHelper().isToDoTooOld(t);
     		
         	if(isTooOld) {
         		Intent i = new Intent(fragmentsActivity, TooOldToDoReceiver.class);
