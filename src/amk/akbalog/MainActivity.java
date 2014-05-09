@@ -2,12 +2,20 @@ package amk.akbalog;
 
 import java.util.List;
 
+import amk.classes.ActivityHelper;
 import amk.classes.BackLog;
 import amk.classes.ListViewFragment;
 import amk.database.DbBackLog;
 import amk.interfaces.OnUserSelectCategory;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
@@ -16,10 +24,13 @@ public class MainActivity extends Activity implements OnUserSelectCategory {
 	private DbBackLog backLogs;
 	private TextView tv;
 	private OnUserSelectCategory ousc;
+	private MainActivity thisActivity;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		thisActivity = this;
 		
 		ousc = (OnUserSelectCategory)this;
 		
@@ -59,13 +70,77 @@ public class MainActivity extends Activity implements OnUserSelectCategory {
 			}
 		});
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menuItemAddToDo:
+			addToDoDialog();
+			return true;
+		case R.id.menuItemAbout:
+			viewAboutUs();
+			return true;
+		case R.id.menuItemNews:
+			viewNews();
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void onItemSelected(int category) {
-		// TODO Auto-generated method stub
-		ListViewFragment f = (ListViewFragment) this.getFragmentManager().findFragmentById(R.id.fragment1);
+		ListViewFragment f = (ListViewFragment)thisActivity.getFragmentManager().findFragmentById(R.id.fragment1);
 		
 		if(f != null && f.isInLayout())
 			f.setCategory(category);
 	}
+	
+	private void viewAboutUs() {
+		ActivityHelper ah = new ActivityHelper();
+		ah.viewAboutUs(this);
+    }
+	
+	private void viewNews() {
+		Intent intent = new Intent(this, NewsActivity.class);
+		startActivity(intent);
+	}
+	
+	private void addToDoDialog(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.dialogAddToDoTitle);
+
+		// Set up the input
+		final EditText input = new EditText(this);
+		// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+		input.setInputType(InputType.TYPE_CLASS_TEXT);
+		builder.setView(input);
+
+		// Set up the buttons
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { 
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		    	ListViewFragment f = (ListViewFragment)thisActivity.getFragmentManager().findFragmentById(R.id.fragment1);
+				
+				if(f != null && f.isInLayout())
+					f.addToDoToSelectedCategory(input.getText().toString());
+		    }
+		});
+		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        dialog.cancel();
+		    }
+		});
+
+		builder.show();
+	}
 }
+
+

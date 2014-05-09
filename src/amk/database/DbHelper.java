@@ -19,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_STATUS = "status";
 	public static final String COLUMN_ADDED = "createdDate";
 
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 1;
 
 	public static final String CREATE_TABLEBACKLOG = "create table "
 			+ TABLE_BACKLOG + "(" + COLUMN_ID

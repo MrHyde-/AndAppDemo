@@ -4,7 +4,7 @@ package amk.classes;
 public class ToDo {
 	private int Id;
 	private String Name;
-	private boolean Active;
+	private boolean Done;
 	private String CreatedDate;
 	private int BackLog;
 	
@@ -20,11 +20,11 @@ public class ToDo {
 	public void setName(String name) {
 		Name = name;
 	}
-	public boolean isActive() {
-		return Active;
+	public boolean isDone() {
+		return Done;
 	}
-	public void setActive(boolean active) {
-		Active = active;
+	public void setDone(boolean status) {
+		Done = status;
 	}
 	public String getCreatedDate() {
 		return CreatedDate;
@@ -44,6 +44,9 @@ public class ToDo {
     	String resultString = "";
     			
     	resultString += getName();
+
+    	//for helping debug..
+    	//resultString += " :: activity :: " + String.valueOf(isDone());
    	
     	return resultString;
     }

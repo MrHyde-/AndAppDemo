@@ -8,20 +8,30 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
-        android:id="@+id/textViewBacklogTitle"
+        android:id="@+id/textViewHelperForMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/designTimeGroup"
+        android:text="@string/mainHelper"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/textViewBacklogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/designTimeGroup"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/textViewHelperForMain" />
 
     <RatingBar
         android:id="@+id/ratingBarSelectedBacklog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_below="@+id/textViewBacklogTitle" />
 
     <fragment
         android:id="@+id/fragment1"

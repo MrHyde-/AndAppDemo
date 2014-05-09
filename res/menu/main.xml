@@ -1,11 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="amk.akbalog.MainActivity" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+    
+    <item android:id="@+id/menuItemAddToDo" android:title="@string/menuAddToDo"></item>
+    <item android:id="@+id/menuItemNews" android:title="@string/menuNews"></item>
+    <item android:id="@+id/menuItemAbout" android:title="@string/settingAbout"></item>
+    
 
 </menu>
