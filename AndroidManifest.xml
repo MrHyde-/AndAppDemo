@@ -32,6 +32,10 @@
             android:name="amk.akbalog.NewsActivity"
             android:label="@string/title_activity_news" >
         </activity>
+        <activity
+            android:name="amk.akbalog.NewsViewActivity"
+            android:label="@string/title_activity_news_view" >
+        </activity>
     </application>
 
 </manifest>

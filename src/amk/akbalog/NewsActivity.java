@@ -1,19 +1,57 @@
 package amk.akbalog;
 
+import java.util.List;
+
 import amk.classes.ActivityHelper;
-import android.app.Activity;
+import amk.classes.NewsData;
+import amk.interfaces.NewsListener;
+import amk.services.ServBinder;
+import amk.services.ServNetworkData;
+import android.app.ListActivity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class NewsActivity extends Activity {
-
+public class NewsActivity extends ListActivity implements NewsListener {
+	private ServiceConnection sc;
+	private NewsActivity copySelf;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		copySelf = this;
+		
 		setContentView(R.layout.activity_news);
 		
-		//start news collecting..
+		//bind to service
+		sc = new ServiceConnection() {
+			@Override
+			public void onServiceConnected(ComponentName n, IBinder b) {
+				((ServBinder)b).passListener(copySelf);
+			}
+			@Override
+			public void onServiceDisconnected(ComponentName name) {
+
+			}
+		};
+
+		Intent i = new Intent(this, ServNetworkData.class);
+		this.bindService(i, sc, Context.BIND_AUTO_CREATE);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		this.unbindService(sc);
+		super.onDestroy();
 		
 	}
 
@@ -38,4 +76,22 @@ public class NewsActivity extends Activity {
 		ah.viewAboutUs(this);
     }
 
+	@Override
+	public void updateNews(List<NewsData> news) {
+		// TODO Auto-generated method stub
+		ArrayAdapter<NewsData> adapter = new ArrayAdapter<NewsData>(this, android.R.layout.simple_list_item_1, news);
+		setListAdapter(adapter);
+	}
+
+	@Override
+	  public void onListItemClick(ListView l, View v, int position, long id) {
+		//get item from the list so we can catch the name
+		NewsData newsForWebView = (NewsData)l.getItemAtPosition(position);
+
+		//show webview with url content
+		Intent intent = new Intent(this, NewsViewActivity.class);
+		intent.putExtra("title", newsForWebView.getTitle());
+		intent.putExtra("link", newsForWebView.getUrl());
+		startActivity(intent);
+	  }
 }

@@ -32,12 +32,7 @@ public class ListViewFragment extends ListFragment {
 		todos = new DbToDo(currentActivity);
 		todos.open();
 
-		List<ToDo> list = todos.getToDosByBackLog(currentCategory);
-		
-		// Use the SimpleCursorAdapter to show the
-		// elements in a ListView
-		ArrayAdapter<ToDo> adapter = new ArrayAdapter<ToDo>(currentActivity, android.R.layout.simple_list_item_1, list);
-		setListAdapter(adapter);
+		updateArrayAdapter();
 		
 		return v;
 	}

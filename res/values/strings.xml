@@ -20,4 +20,7 @@
     <string name="menuAddToDo">Add new ToDo</string>
     <string name="toDoAdded">Added new ToDo!</string>
     <string name="dialogAddToDoTitle">Add new ToDo!</string>
+    <string name="newsTitle">News from YLE Sport</string>
+    <string name="title_activity_news_view">NewsViewActivity</string>
+
 </resources>

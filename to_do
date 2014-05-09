@@ -11,7 +11,5 @@ Todo:
  - notify if something has been todo more than 1 week
 
 ToDos
--adding
--edit
--delete
--mark_Done
+-adding [done]
+-mark_Done [done]

@@ -1,5 +1,6 @@
 package amk.services;
 
+import amk.interfaces.NewsListener;
 import android.os.Binder;
 
 public class ServBinder extends Binder {
@@ -12,5 +13,9 @@ public class ServBinder extends Binder {
 	
 	public ServNetworkData getServiceNetworkData() {
 		return d;
+	}
+	
+	public void passListener(NewsListener l) {
+		d.loadData(l);
 	}
 }
