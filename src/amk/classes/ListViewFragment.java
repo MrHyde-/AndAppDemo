@@ -21,6 +21,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/*
+ * Fragment which is displaying list of ToDo items 
+ * 
+ */
+
 public class ListViewFragment extends ListFragment {
 	DbToDo todos;
 	ToDo toDoForDialog;
@@ -36,6 +41,7 @@ public class ListViewFragment extends ListFragment {
 		todos = new DbToDo(currentActivity);
 		todos.open();
 
+		//call method which sets the arraylist adapter for the list
 		updateArrayAdapter();
 		
 		return v;
@@ -47,6 +53,7 @@ public class ListViewFragment extends ListFragment {
 		updateArrayAdapter();
 	}
 	
+	//method to used when user adds new item to the category
 	public void addToDoToSelectedCategory(String toDoText) {
 		todos.addToDoToCategory(toDoText, currentCategory);
 		Toast.makeText(getActivity(), R.string.toDoAdded, Toast.LENGTH_SHORT).show();
@@ -57,7 +64,9 @@ public class ListViewFragment extends ListFragment {
 	  public void onListItemClick(ListView l, View v, int position, long id) {
 		//get item from the list so we can catch the name
 		toDoForDialog = (ToDo)l.getItemAtPosition(position);
+		
 		// change item status
+
 		//dialog 'is this really done?'
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -110,7 +119,8 @@ public class ListViewFragment extends ListFragment {
 		List<ToDo> list = todos.getToDosByBackLog(currentCategory);
 		ArrayAdapter<ToDo> adapter = new ArrayAdapter<ToDo>(getActivity(), android.R.layout.simple_list_item_1, list);
 		setListAdapter(adapter);
-		
+
+		//if there are too old items notify user to get something done 
 		checkOldest();
 	}
     

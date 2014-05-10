@@ -20,13 +20,18 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/*
+ * Applications second activity, contains ListView which displays news data from JSON
+ * */
+
 public class NewsActivity extends ListActivity implements NewsListener {
 	private ServiceConnection sc;
 	private NewsActivity copySelf;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
+		//helper to be used when service is connected
 		copySelf = this;
 		
 		setContentView(R.layout.activity_news);
@@ -43,6 +48,7 @@ public class NewsActivity extends ListActivity implements NewsListener {
 			}
 		};
 
+		//bind the network service to collecting json data
 		Intent i = new Intent(this, ServNetworkData.class);
 		this.bindService(i, sc, Context.BIND_AUTO_CREATE);
 	}

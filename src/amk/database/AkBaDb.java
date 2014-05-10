@@ -2,7 +2,10 @@ package amk.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
+/*
+ * the database class 
+ * 
+ */
 public class AkBaDb {
 	public SQLiteDatabase database;
 	private DbHelper dbHelper;

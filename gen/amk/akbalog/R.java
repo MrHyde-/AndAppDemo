@@ -27,7 +27,6 @@ public final class R {
         public static final int todobackground=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000b;
         public static final int container=0x7f080000;
         public static final int fragment1=0x7f080004;
         public static final int menuItemAbout=0x7f080009;
@@ -49,7 +48,6 @@ public final class R {
     public static final class menu {
         public static final int main=0x7f070000;
         public static final int news=0x7f070001;
-        public static final int news_view=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;

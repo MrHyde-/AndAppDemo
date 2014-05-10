@@ -20,6 +20,10 @@ import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 
+/*
+ * Applications main activity, contains ListViewFragment which displays all the data
+ * */
+
 public class MainActivity extends Activity implements OnUserSelectCategory {
 	private DbBackLog backLogs;
 	private TextView tv;
@@ -30,8 +34,10 @@ public class MainActivity extends Activity implements OnUserSelectCategory {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		//helper for when selected item on the fragmentList
 		thisActivity = this;
-		
+
+		//listener when selecting category items
 		ousc = (OnUserSelectCategory)this;
 		
 		setContentView(R.layout.activity_main);
@@ -59,8 +65,7 @@ public class MainActivity extends Activity implements OnUserSelectCategory {
 		rb.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 			
 			@Override
-			public void onRatingChanged(RatingBar ratingBar, float rating,
-					boolean fromUser) {
+			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 				backLogs.open();
 				BackLog b = backLogs.getBacklogById((int)rating);
 				tv.setText(b.getName());
@@ -96,6 +101,7 @@ public class MainActivity extends Activity implements OnUserSelectCategory {
 
 	@Override
 	public void onItemSelected(int category) {
+		//helper for when selected item on the categoryList
 		ListViewFragment f = (ListViewFragment)thisActivity.getFragmentManager().findFragmentById(R.id.fragment1);
 		
 		if(f != null && f.isInLayout())
@@ -103,16 +109,19 @@ public class MainActivity extends Activity implements OnUserSelectCategory {
 	}
 	
 	private void viewAboutUs() {
+		//dialog for about us
 		ActivityHelper ah = new ActivityHelper();
 		ah.viewAboutUs(this);
     }
 	
 	private void viewNews() {
+		//mode to another activity
 		Intent intent = new Intent(this, NewsActivity.class);
 		startActivity(intent);
 	}
 	
 	private void addToDoDialog(){
+		//adding new todo item to selected category
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.dialogAddToDoTitle);
 

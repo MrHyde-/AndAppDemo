@@ -1,16 +1,13 @@
 package amk.classes;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import amk.akbalog.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-
+/*
+ * Class to have common activity methods
+ * */
 public class ActivityHelper {
 	
 	public ActivityHelper()
@@ -18,6 +15,8 @@ public class ActivityHelper {
 		
 	}
 	
+	
+	//displays about us Dialog from multiple activity
 	public void viewAboutUs(Activity onActivity) {
 		AlertDialog.Builder adb = new AlertDialog.Builder(onActivity);
 		adb.setTitle(R.string.settingAbout);
@@ -33,31 +32,19 @@ public class ActivityHelper {
 		ad.show();
     }
 	
+	//is used to determinate if there are too old ToDo items at the db
 	public Boolean isToDoTooOld(ToDo t) {
 		Boolean isTooOld = false;
 		
-		String dtStart = t.getCreatedDate();  
-		SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");  
+		long oneWeekInMills = (7*24*60*60*1000);
 		
-		try {  
-		    Date date = (Date) format.parse(dtStart);  
-		    
-		    Calendar c = Calendar.getInstance(); 
-		    long millsNow = c.get(Calendar.MILLISECOND);
-		    long mills = date.getTime() - millsNow;
-		    float days = mills/(1000 * 60 * 60 * 24);
-		    
-		    if(days > 7)
-		    {
-		    	isTooOld = true;
-		    }
-		    
-		    System.out.println(date);
-		} catch (ParseException e) {  
-		    // TODO Auto-generated catch block  
-		    e.printStackTrace();
-		    
-		} 
+		long tooOldtime = System.currentTimeMillis() - oneWeekInMills;
+		long todoTime = Long.valueOf(t.getCreatedDate());
+		
+		if(todoTime < tooOldtime)
+		{
+			isTooOld = true;
+		}
 		
 		return isTooOld;
 	}

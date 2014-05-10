@@ -1,5 +1,10 @@
 package amk.classes;
 
+/*
+ * Simple class to implement news which are shown on the list 
+ * 
+ */
+
 public class NewsData {
 	private String title;
 	private String url;

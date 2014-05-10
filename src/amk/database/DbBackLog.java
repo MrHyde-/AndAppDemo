@@ -8,6 +8,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+/*
+ * Database item for BackLogs (the categories of ToDo items) 
+ * 
+ */
+
 public class DbBackLog extends AkBaDb {
 
 	public DbBackLog(Context context) {
@@ -45,7 +50,6 @@ public class DbBackLog extends AkBaDb {
 	}
 
 	public BackLog getBacklogById(int rating) {
-		// TODO MAKE IT MEAN SOMETHING :D
 		return getAllBacklogs().get(rating - 1);
 	}
 

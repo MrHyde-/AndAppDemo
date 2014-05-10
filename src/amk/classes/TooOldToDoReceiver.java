@@ -9,6 +9,11 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+/*
+ * BroadcastReceiver which is making notifications if needed 
+ * 
+ */
+
 public class TooOldToDoReceiver extends BroadcastReceiver {
 
 	@Override

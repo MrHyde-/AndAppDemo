@@ -1,6 +1,8 @@
 package amk.classes;
 
-
+/*
+ * Simple class to implement something ToDo
+ * */
 
 public class ToDo {
 	private int Id;
@@ -47,7 +49,7 @@ public class ToDo {
     	resultString += getName();
 
     	//for helping debug..
-    	resultString += " :: time :: " + getCreatedDate();
+    	//resultString += " :: time :: " + getCreatedDate();
     	
     	return resultString;
     }

@@ -8,6 +8,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+/*
+ * Database actions for ToDo items 
+ * 
+ */
+
 public class DbToDo extends AkBaDb {
 	public DbToDo(Context context) {
 		super(context);
@@ -73,7 +78,10 @@ public class DbToDo extends AkBaDb {
 		values.put(DbHelper.COLUMN_NAME, t.getName());
 		values.put(DbHelper.COLUMN_BACKLOG, t.getBackLog());
 		values.put(DbHelper.COLUMN_STATUS, (t.isDone() ? 1 : 0));
-
+		
+		long time = System.currentTimeMillis();
+		values.put(DbHelper.COLUMN_ADDED, String.valueOf(time));
+		
 		database.insert(DbHelper.TABLE_TODO, null, values);
 	}
 	

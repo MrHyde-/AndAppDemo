@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/*
+ * Class for database versioning, creating and putting some sample data 
+ * 
+ */
+
 public class DbHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "db.akBaDb";
@@ -31,7 +36,7 @@ public class DbHelper extends SQLiteOpenHelper {
 			+ " text not null, " + COLUMN_BACKLOG
 			+ " integer not null, " + COLUMN_STATUS
 			+ " integer not null, " + COLUMN_ADDED
-			+ " datetime default current_timestamp);";
+			+ " text not null);";
 
 	public DbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,21 +47,35 @@ public class DbHelper extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TABLEBACKLOG);
 		db.execSQL(CREATE_TABLETODOS);
 		
-		//add two sample groups
+		//Sample Data to start with category1
 		ContentValues values = new ContentValues();
 		values.put(DbHelper.COLUMN_NAME, "Work");
 		db.insert(DbHelper.TABLE_BACKLOG, null, values);
 		
+		//category2
 		ContentValues values2 = new ContentValues();
 		values2.put(DbHelper.COLUMN_NAME, "Home");
 		db.insert(DbHelper.TABLE_BACKLOG, null, values2);
 		
+		//todo 2 to category 1
 		ContentValues values3 = new ContentValues();
 		values3.put(DbHelper.COLUMN_NAME, "Sample");
 		values3.put(DbHelper.COLUMN_BACKLOG, 1);
 		values3.put(DbHelper.COLUMN_STATUS, 0);
 
+		long eightDaysInMills = (8*24*60*60*1000);
+		long time = System.currentTimeMillis();
+		values3.put(DbHelper.COLUMN_ADDED, String.valueOf(time));
+		
+		//todo1 to category2
+		ContentValues values4 = new ContentValues();
+		values4.put(DbHelper.COLUMN_NAME, "fill travel bill");
+		values4.put(DbHelper.COLUMN_BACKLOG, 2);
+		values4.put(DbHelper.COLUMN_STATUS, 0);
+		values4.put(DbHelper.COLUMN_ADDED, String.valueOf((time-eightDaysInMills)));
+		
 		//for test this should be set as 1 after 1 minute it is week old
+		db.insert(DbHelper.TABLE_TODO, null, values4);
 		db.insert(DbHelper.TABLE_TODO, null, values3);
 	}
 

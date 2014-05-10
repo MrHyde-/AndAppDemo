@@ -19,6 +19,11 @@ import amk.interfaces.NewsListener;
 import android.os.AsyncTask;
 import android.util.Log;
 
+/*
+ * Class which is fetching JSON data from the network and also handles it 
+ * 
+ */
+
 public class HttpAsyncTask extends AsyncTask<String, Void, String> {
 	NewsListener listener = null;
 
@@ -32,6 +37,7 @@ public class HttpAsyncTask extends AsyncTask<String, Void, String> {
 
 		return GET(urls[0]);
 	}
+	
 	// onPostExecute displays the results of the AsyncTask.
 	@Override
 	protected void onPostExecute(String result) {
@@ -47,14 +53,7 @@ public class HttpAsyncTask extends AsyncTask<String, Void, String> {
 			//make list from these!
 			for(int i=0; i<newsCount;i++)
 			{
-				//String str = "";
 				JSONArray articles = json.getJSONArray("news");
-/*					str += "\n--------\n";
-				str += "title: " + articles.getJSONObject(i).getString("title");
-				str += "\n--------\n";
-				str += "url: " + articles.getJSONObject(i).getString("link");
-
-				Log.d("JSON", str);*/
 				
 				NewsData data = new NewsData();
 				data.setTitle(articles.getJSONObject(i).getString("title"));
